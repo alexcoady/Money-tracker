@@ -1,0 +1,43 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Money tracker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="container" id="app">
+
+            <div class="row">
+
+                <div class="span4" id="stats">
+                    Stats...
+                </div>
+
+                <div class="span4" id="entries">
+                    <h1>Loading..</h1>
+                </div>
+
+                <div class="span4" id="entry-add-form">
+                    <input id="add-entry-amount" class="add-form-input" placeholder="Amount" />
+                    <input id="add-entry-description" class="add-form-input" placeholder="Description" />
+                </div>
+
+            </div>
+
+        </div>
+        <!-- build:js scripts/main.js -->
+        <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
