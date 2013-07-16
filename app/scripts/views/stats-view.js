@@ -11,20 +11,24 @@ define([
 
     var StatsView = Backbone.View.extend({
 
+        tagName: 'div',
+
+        className: 'hero-unit',
+
         template: JST['app/scripts/templates/stats.ejs'],
 
         initialize: function () {
 
         	var entries = EntryCollection.getInstance();
 
-        	entries.on('add edit', this.render, this);
+        	entries.on('add remove', this.render, this);
         },
 
         render: function () {
 
         	var entries = EntryCollection.getInstance();
 
-        	var template = this.template( { balance: entries.getBalance() } );
+        	var template = this.template( { balance: entries.getBalance(), totalEntries: entries.length } );
         	this.$el.html(template);
         	return this;
         }

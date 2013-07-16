@@ -11,19 +11,20 @@ define([
 
     var EntryCollectionView = Backbone.View.extend({
 
-    	tagName: "ul",
+    	tagName: "table",
 
-    	className: "entry-list",
+    	className: "entry-list table table-bordered",
 
     	initialize: function () {
 
-    		this.collection.on('add', this.renderOne, this);
+            this.collection.on('add', this.renderOne, this);
+            this.collection.on('remove', this.render, this);
     	},
 
     	render: function () {
 
     		var that = this;
-
+            this.$el.empty();
     		this.collection.each(function (entry) {
 
     			that.renderOne(entry);

@@ -16,10 +16,18 @@ define([
 
         getBalance: function () {
 
-        	return (_.reduce(this.pluck('amount'), function (sum, next) {
+            if (!this.length) return 0;
+
+        	var balance = _.reduce(this.pluck('amount'), function (sum, next) {
 
         		return +sum + +next;
-        	})).toFixed();
+        	});
+
+            if (balance % 1 !== 0) {
+                return balance.toFixed(2);
+            } 
+
+            return balance;
         }
     },
     {

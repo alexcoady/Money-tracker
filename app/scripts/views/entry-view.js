@@ -10,11 +10,16 @@ define([
 
     var EntryView = Backbone.View.extend({
 
-    	tagName: "li",
+    	tagName: "tr",
 
     	className: "entry-item",
         
         template: JST['app/scripts/templates/entry.ejs'],
+
+        events : {
+
+            'click .delete' : 'destroy'
+        },
 
         initialize: function () {
 
@@ -26,6 +31,11 @@ define([
         	this.$el.html( template );
 
         	return this;
+        },
+
+        destroy: function () {
+
+            this.model.destroy();
         }
 
 
