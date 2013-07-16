@@ -7,9 +7,11 @@ define([
     'use strict';
 
     var EntryModel = Backbone.Model.extend({
+        
         defaults: {
         	amount: 0,
-        	description: "N/A"
+        	description: "N/A",
+            partyId: undefined
         },
 
         initialize: function () {

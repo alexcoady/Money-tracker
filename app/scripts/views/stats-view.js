@@ -11,10 +11,6 @@ define([
 
     var StatsView = Backbone.View.extend({
 
-        tagName: 'div',
-
-        className: 'hero-unit',
-
         template: JST['app/scripts/templates/stats.ejs'],
 
         initialize: function () {
@@ -32,7 +28,6 @@ define([
         	this.$el.html(template);
         	return this;
         }
-
     },
     {
     	_instance: undefined,

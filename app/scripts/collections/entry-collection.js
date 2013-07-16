@@ -12,7 +12,7 @@ define([
         
         model: EntryModel,
 
-        localStorage: new Backbone.LocalStorage('money-tracker'),
+        localStorage: new Backbone.LocalStorage('money-tracker-entries'),
 
         getBalance: function () {
 
