@@ -10,5 +10,7 @@
     "underscore-amd": "~1.4.4",
     "modernizr": "~2.6.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "backbone.localStorage": "~1.1.6"
+  }
 }

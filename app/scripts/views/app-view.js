@@ -5,12 +5,13 @@ define([
     'underscore',
     'backbone',
     'templates',
+    'bootstrap',
     'collections/entry-collection',
     'views/entry-collection-view',
     'collections/party-collection',
     'views/party-collection-view',
     'views/stats-view'
-], function ($, _, Backbone, JST, EntryCollection, EntryCollectionView, PartyCollection, PartyCollectionView, StatsView) {
+], function ($, _, Backbone, JST, bootstrap, EntryCollection, EntryCollectionView, PartyCollection, PartyCollectionView, StatsView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -27,7 +28,8 @@ define([
 
         	this.$entryAddForm = this.$('#entry-add-form');
         	this.$entryAddAmount = this.$('#add-entry-amount');
-        	this.$entryAddDescription = this.$('#add-entry-description');
+            this.$entryAddDescription = this.$('#add-entry-description');
+            this.$entryAddPartyName = this.$('#add-entry-party-name');
 
             this.$partyAddForm = this.$('#party-add-form');
             this.$partyAddName = this.$('#add-party-name');
@@ -47,10 +49,19 @@ define([
                 partyCollectionView = new PartyCollectionView({ collection: parties }),
         		statsView = StatsView.getInstance();
 
+            // Render entries
             this.$entries.html( entryCollectionView.render().el );
+
+            console.log(this.$entryAddPartyName);
+
+            this.$entryAddPartyName.typeahead({
+                source: parties.pluck('name')
+            });
             
+            // Render parties
             this.$parties.html( partyCollectionView.render().el );
 
+            // Render stats
         	this.$stats.html( statsView.render().el );
 
         	return this;
