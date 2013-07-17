@@ -16,7 +16,7 @@ define([
 
         events: {
 
-            'click': 'alertUs'
+            'click .delete': 'destroy'
         },
 
         initialize: function () {

@@ -13,7 +13,7 @@ define([
 
 		tagName: "table",
 
-		className: "table table-rounded",
+		className: "table table-bordered",
 
 		events: {
 

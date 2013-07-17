@@ -62,6 +62,8 @@ define([
 
         	if (e.keyCode === 13) {
 
+                e.preventDefault();
+
         		entries.create({
         			amount: this.$entryAddAmount.val(),
         			description: this.$entryAddDescription.val()
@@ -70,7 +72,6 @@ define([
         		this.$entryAddAmount.val("").focus();
         		this.$entryAddDescription.val("");
         	}
-
         },
 
         addParty: function (e) {
@@ -78,6 +79,8 @@ define([
             var parties = PartyCollection.getInstance();
 
             if (e.keyCode === 13) {
+
+                e.preventDefault();
 
                 parties.create({
                     name: this.$partyAddName.val()
