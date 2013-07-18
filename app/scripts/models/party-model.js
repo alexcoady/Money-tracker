@@ -10,7 +10,6 @@ define([
         defaults: {
 
         	name: "New party"
-        
         }
     });
 

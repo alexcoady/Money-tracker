@@ -6,7 +6,8 @@ define([
     'backbone',
     'templates',
     'views/entry-view',
-], function ($, _, Backbone, JST, EntryView) {
+    'models/stats-model',
+], function ($, _, Backbone, JST, EntryView, StatsModel) {
     'use strict';
 
     var EntryCollectionView = Backbone.View.extend({

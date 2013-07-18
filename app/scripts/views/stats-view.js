@@ -5,8 +5,7 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'collections/entry-collection',
-], function ($, _, Backbone, JST, EntryCollection) {
+], function ($, _, Backbone, JST, StatsModel) {
     'use strict';
 
     var StatsView = Backbone.View.extend({
@@ -15,32 +14,15 @@ define([
 
         initialize: function () {
 
-        	var entries = EntryCollection.getInstance();
-
-        	entries.on('add remove', this.render, this);
+        	this.model.on('change', this.render, this);
         },
 
         render: function () {
 
-        	var entries = EntryCollection.getInstance();
-
-        	var template = this.template( { balance: entries.getBalance(), totalEntries: entries.length } );
+        	var template = this.template( this.model.toJSON() );
         	this.$el.html(template);
         	return this;
         }
-    },
-    {
-    	_instance: undefined,
-
-    	getInstance: function () {
-
-    		if (this._instance === undefined) {
-
-    			this._instance = new StatsView();
-    		}
-
-    		return this._instance;
-    	}
     });
 
     return StatsView;

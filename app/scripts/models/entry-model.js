@@ -10,8 +10,11 @@ define([
         
         defaults: {
         	amount: 0,
-        	description: "N/A",
-            partyId: undefined
+        	description: "",
+            party: undefined,
+            date: undefined,
+            dateAdded: undefined,
+            dateUpdated: undefined
         },
 
         initialize: function () {
