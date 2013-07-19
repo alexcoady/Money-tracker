@@ -1,12 +1,26 @@
 #Money tracker
-A simple backbone money tracker for personal use
+##A simple backbone money tracker for personal use
 
-Will use RequireJS, Backbone localStorage, d3 for data visualisation and potentially a RESTful API with a PHP or Node backend at a later date. Also using twitter bootstrap for the UI.
+###Installation
 
-Feel free to contribute, but no additional 3rd party plugins are welcome at this stage.
+	cd/to/directory
+	npm install && bower install
+	grunt server
 
-To install, clone the repo and `cd/to/directory` in Terminal
+to view uncompiled, development code in your browser, or alternatively:
 
-Run `npm install` and `bower install` to install local environment files and bower components (jQuery, Backbone etc).
+	cd/to/directory
+	npm install && bower install
+	grunt build
 
-Run `grunt server` or `grunt build` and explore the `dist` directory.
+to compile the full application and then run in your preferred method.
+
+###Dependencies and tools
+	- Backbone.js
+	- Underscore.js
+	- Require.js
+	- Backbone.localStorage (will replace with Node.js RESTful API later)
+	- Twitter Bootstrap
+	- Compass & Sass
+	- Grunt
+	- Yo (Backbone generator)
