@@ -18,13 +18,11 @@ define([
 
             var party = this.findWhere({ "name": name });
             
-            if (!party) {
+            if (party === undefined) {
 
-                this.create({
-                    "name": name
-                });
-
-                party = this.findWhere({ "name": name });
+                party = new PartyModel({ "name": name });
+                this.add(party);
+                party.save();
             }            
 
             return party; 
