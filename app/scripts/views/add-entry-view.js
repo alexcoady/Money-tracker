@@ -29,10 +29,6 @@ define([
             this.formInput = {
                 date: {}
             };
-
-        	
-
-            console.log(this);
         },
 
         render: function () {
