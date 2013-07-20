@@ -16,6 +16,9 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        d3: {
+            exports: 'd3'
         }
     },
     paths: {
@@ -24,6 +27,7 @@ require.config({
         underscore: '../bower_components/underscore-amd/underscore',
         bootstrap: 'vendor/bootstrap',
         localStorage: '../bower_components/backbone.localStorage/backbone.localStorage',
+        d3: '../bower_components/d3/d3',
     }
 });
 

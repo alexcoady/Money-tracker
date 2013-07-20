@@ -14,16 +14,18 @@ define([
 
         localStorage: new Backbone.LocalStorage('money-tracker-parties'),
 
-        getCreateByName: function (name) {
+        getByCreateByName: function (name) {
 
             var party = this.findWhere({ "name": name });
             
             if (party === undefined) {
 
                 party = new PartyModel({ "name": name });
+                
                 this.add(party);
+
                 party.save();
-            }            
+            }    
 
             return party; 
         }

@@ -23,12 +23,13 @@ define([
 
         initialize: function () {
 
+            this.model.on("change:party", this.render, this);
         },
 
         render: function () {
 
-        	var template = this.template( this.model.toJSON() );
-        	this.$el.html( template );
+        	var template = this.template( this.model.toJSON() );        	
+            this.$el.html( template );
 
         	return this;
         },
@@ -37,7 +38,6 @@ define([
 
             this.model.destroy();
         }
-
 
     });
 

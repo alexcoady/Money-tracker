@@ -55,19 +55,23 @@ define([
 
         setFormDefaults: function () {
 
-            var parties = PartyCollection.getInstance(),
+            var entries = EntryCollection.getInstance(),
+                parties = PartyCollection.getInstance(),
                 now = new Date();
 
             this.formInput.$amount.val("").focus();
+
             this.formInput.$description.val("");
+            this.formInput.$description.typeahead({
+                source: function () {
+                    return _.uniq(entries.pluck("description"));
+                }
+            });
             
             this.formInput.$partyName.val("");
-
-            console.log(parties.pluck('name'));
-            
             this.formInput.$partyName.typeahead({
                 source: function () {
-                    return parties.pluck('name');
+                    return _.uniq(parties.pluck("name"));
                 }
             });
 
@@ -89,25 +93,25 @@ define([
 
         addEntry: function () {
 
-
-
             // Put together date
             var entryDate = [
                     
                     this.formInput.date.$year.val(), 
-                    this.formInput.date.$month.val(), 
+                    this.formInput.date.$month.val() - 1, // Array numbering [0..11]
                     this.formInput.date.$day.val()
                 ],
 
                 entries = EntryCollection.getInstance(),
                 parties = PartyCollection.getInstance(),
 
+                party = parties.getByCreateByName(this.formInput.$partyName.val()),
+
                 // Build new entry
                 entry = new EntryModel({
                     
                     amount: this.formInput.$amount.val(),
                     description: this.formInput.$description.val(),
-                    party: parties.getCreateByName(this.formInput.$partyName.val()),
+                    party: party,
                     date: new Date(entryDate),
                     dateAdded: new Date()
                 });
@@ -118,6 +122,7 @@ define([
             // Persist entry
             entry.save();
 
+            // Reset form
             this.setFormDefaults();
         }
     });

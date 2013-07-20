@@ -11,6 +11,8 @@
     "modernizr": "~2.6.2"
   },
   "devDependencies": {
-    "backbone.localStorage": "~1.1.6"
+    "backbone.localStorage": "~1.1.6",
+    "font-awesome": "~3.2.1",
+    "d3": "~3.2.7"
   }
 }

@@ -1,4 +1,5 @@
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'font-awesome/scss/font-awesome';
 
 body {
 	background: #EAEAEA;
@@ -7,4 +8,10 @@ body {
 .container {
 	padding: 20px 0;
 	background: #fff;
+}
+
+.chart {
+	height: 200px;
+	width: 100%;
+	background: yellow;
 }
