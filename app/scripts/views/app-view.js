@@ -28,7 +28,7 @@ define([
         initialize: function () {
 
         	this.$entries = this.$('#entries');
-        },
+        }, 
 
         render: function () {
 
@@ -36,7 +36,7 @@ define([
                 controlsView = new ControlsView({ model: settings }),
 
                 entries = EntryCollection.getInstance(),
-                entryCollectionView = new EntryCollectionView({ collection: entries }),
+                entryCollectionView = new EntryCollectionView({ model: settings, collection: entries }),
                 
                 dashboard = DashboardModel.getInstance(),
         		dashboardView = new DashboardView({ model: dashboard, collection: entries }),

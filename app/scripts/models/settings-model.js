@@ -22,6 +22,7 @@ define([
 
             this.set("sorts", [
                 "date",
+                "amount",
                 "description",
                 "party"
             ]);

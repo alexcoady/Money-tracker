@@ -6,8 +6,10 @@ define([
     'backbone',
     'templates',
     'views/entry-view',
-    'models/settings-model'
-], function ($, _, Backbone, JST, EntryView, SettingsModel) {
+    'models/settings-model',
+    'collections/entry-collection',
+    'models/party-model',
+], function ($, _, Backbone, JST, EntryView, SettingsModel, EntryCollection, PartyModel) {
     'use strict';
 
     var EntryCollectionView = Backbone.View.extend({
@@ -18,7 +20,10 @@ define([
         
     	initialize: function () {
 
-            this.collection.on('add remove', this.renderFiltered, this);
+            console.log(this);
+
+            this.collection.on('add remove', this.render, this);
+            this.model.on("change", this.render, this);
     	},
 
     	renderAll: function () {
@@ -45,17 +50,85 @@ define([
     	},
 
         /*
-        *   Function renderFilter
+        *   Function render
         *   ----------------------------------------------------
         *   Render this collection with a filter applied
         *   ----------------------------------------------------
         *   @param null
         *   @return this: EntryCollectionView object
         */
-        renderFiltered: function () {
+        render: function () {
 
-            var settings = SettingsModel.getInstance();
-        }
+            var that = this,
+                filteredEntryCollection = new EntryCollection,
+                sortedEntryCollection = new EntryCollection,
+                filterValue = this.model.get("filter"),
+                sortValue = this.model.get("sort");
+
+            switch (filterValue) {
+                case "income": {
+
+                    filteredEntryCollection.set(this.collection.filter(function (entry) {
+
+                        return entry.get("amount") >= 0;
+                    }));
+                    break;
+                }
+                case "outcome": {
+
+                    filteredEntryCollection.set(this.collection.filter(function (entry) {
+
+                        return entry.get("amount") < 0;
+                    }));
+                    break;
+                }
+                default: {
+                    filteredEntryCollection = this.collection;
+                }
+            }
+
+            switch (sortValue) {
+                case "amount": {
+
+                    sortedEntryCollection.set(filteredEntryCollection.sortBy(function (entry) {
+
+                        console.log(entry.get("amount"));
+                        return entry.get("amount");
+                    }));
+
+                    console.log(sortedEntryCollection);
+                    break;
+                }
+                case "description": {
+
+                    sortedEntryCollection.set(filteredEntryCollection.sortBy(function (entry) {
+
+                        return entry.get("description");
+                    }));
+                    break;
+                }
+                case "party": {
+
+                    sortedEntryCollection.set(filteredEntryCollection.sortBy(function (entry) {
+
+                        var party = new PartyModel(entry.get("party"));
+                        return party.get("name");
+                    }));
+                    break;
+                }
+                default: {
+                    sortedEntryCollection = filteredEntryCollection;
+                }
+            }
+
+            this.$el.empty();
+            sortedEntryCollection.each(function (entry) {
+
+                that.renderOne(entry);
+            });
+
+            return this;
+        },
 
     });
 

@@ -17,12 +17,13 @@ define([
 
         events: {
 
-            'click .filter-item': 'changeFilter'
+            'click .filter-item': 'changeFilter',
+            'click .sort-item': 'changeSort'
         },
 
         initialize: function () {
 
-            this.model.on("change:filter", this.render, this);
+            this.model.on("change:filter change:sort", this.render, this);
         },
 
         render: function () {
@@ -35,8 +36,34 @@ define([
 
         changeFilter: function (e) {
 
+            // TODO: Validate the selected filter from the options in the model
+            // or
+            // TODO: make options into models, and build collections for SORT and FILTERS
             var filter = e.target.innerHTML;
+
+            if (filter === this.model.get("filter")) {
+
+                this.model.set("filter", undefined);
+                return;
+            } 
+
             this.model.set("filter", filter);
+        },
+
+        changeSort: function (e) {
+
+            // TODO: Validate the selected filter from the options in the model
+            // or
+            // TODO: make options into models, and build collections for SORT and FILTERS
+            var sort = e.target.innerHTML;
+
+            if (sort === this.model.get("sort")) {
+
+                this.model.set("sort", "date");
+                return;
+            } 
+
+            this.model.set("sort", sort);
         }
     });
 
