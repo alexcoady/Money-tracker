@@ -13,8 +13,8 @@ define([
 
     	tagName: "table",
 
-    	className: "entry-list table table-bordered",
-
+        className: "entry-list table table-bordered table-striped",
+        
     	initialize: function () {
 
             this.collection.on('add', this.renderOne, this);
@@ -24,7 +24,9 @@ define([
     	render: function () {
 
     		var that = this;
+        
             this.$el.empty();
+
     		this.collection.each(function (entry) {
 
     			that.renderOne(entry);
@@ -36,7 +38,8 @@ define([
     	renderOne: function (entry) {
 
     		var entryView = new EntryView({ model: entry });
-    		this.$el.append( entryView.render().el );
+    		
+            this.$el.append( entryView.render().el );
 
     		return this;
     	}

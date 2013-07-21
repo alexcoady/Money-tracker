@@ -20,7 +20,7 @@ define([
 
             this.model.on('change', this.render, this);
             
-            //this.collection.on('add remove', this.drawChart, this);
+            this.collection.on('add remove', this.render, this);
 
            
         },
@@ -47,13 +47,20 @@ define([
                 w = this.$chart.width(),
                 h = this.$chart.height(),
 
+                padding = {
+                    left: 20,
+                    right: 20,
+                    top: 10,
+                    bottom: 10
+                },
+
                 scaleX = d3.time.scale()
-                                    .domain([ d3.min(dataset, function (d) { console.log(new Date(d[0])); return new Date(d[0]); }), d3.max(dataset, function (d) { console.log(new Date(d[0])); return new Date(d[0]); }) ])
-                                    .range([0, w]),
+                                    .domain([ d3.min(dataset, function (d) { return new Date(d[0]); }), d3.max(dataset, function (d) { return new Date(d[0]); }) ])
+                                    .range([padding.right, w - padding.left]),
                 
                 scaleY = d3.scale.linear()
                                     .domain([ d3.max(dataset, function (d) { return d[1]; }), d3.min(dataset, function (d) { return d[1]; }) ])
-                                    .range([0, h]),
+                                    .range([padding.bottom, h - padding.top]),
 
                 svg = d3.select(this.$chart.selector)
                     .append("svg")
@@ -71,7 +78,7 @@ define([
                     "cy": function (d) {
                         return scaleY(d[1]);
                     },
-                    "r": 10
+                    "r": 3
                 });
         }
     });

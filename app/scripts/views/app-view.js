@@ -14,7 +14,9 @@ define([
     'models/dashboard-model',
     'views/dashboard-view',
     'views/add-entry-view',
-], function ($, _, Backbone, JST, bootstrap, EntryCollection, EntryCollectionView, PartyModel, PartyCollection, PartyCollectionView, DashboardModel, DashboardView, AddEntryView) {
+    'models/settings-model',
+    'views/controls-view'
+], function ($, _, Backbone, JST, bootstrap, EntryCollection, EntryCollectionView, PartyModel, PartyCollection, PartyCollectionView, DashboardModel, DashboardView, AddEntryView, SettingsModel, ControlsView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -31,15 +33,24 @@ define([
         render: function () {
 
         	var entries = EntryCollection.getInstance(),
-                entryCollectionView = new EntryCollectionView({ collection: entries }),
+                visibleEntries = EntryCollection.getVisibleInstance(),
+                entryCollectionView = new EntryCollectionView({ collection: visibleEntries }),
                 
                 dashboard = DashboardModel.getInstance(),
-        		dashboardView = new DashboardView({ model: dashboard, collection: entries });
+        		dashboardView = new DashboardView({ model: dashboard, collection: visibleEntries }),
+
+                settings = SettingsModel.getInstance(),
+                controlsView = new ControlsView({ model: settings });
+
+            visibleEntries.add(entries.slice(0, 10));
 
             // Render entries
             this.$entries.html( entryCollectionView.render().el );
 
+
+
             dashboardView.render();
+            controlsView.render();
 
             var addEntryView = new AddEntryView();
             addEntryView.render();

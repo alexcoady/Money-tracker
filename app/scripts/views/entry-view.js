@@ -28,6 +28,12 @@ define([
 
         render: function () {
 
+            var date = new Date(this.model.get("date")),
+
+                prettyDate = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+
+            this.model.set("prettyDate", prettyDate);
+
         	var template = this.template( this.model.toJSON() );        	
             this.$el.html( template );
 

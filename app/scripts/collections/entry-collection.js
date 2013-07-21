@@ -14,6 +14,11 @@ define([
 
         localStorage: new Backbone.LocalStorage('money-tracker-entries'),
 
+        comparator: function (entry) {
+
+            return entry.get("date");
+        },
+
         getBalance: function () {
 
             if (!this.length) return 0;
@@ -32,6 +37,7 @@ define([
     },
     {
     	_instance: undefined,
+        _visibleInstance: undefined,
 
     	getInstance: function () {
 
@@ -42,7 +48,17 @@ define([
     		}
 
     		return this._instance;
-    	}
+    	},
+
+        getVisibleInstance: function () {
+
+            if (this._visibleInstance === undefined) {
+
+                this._visibleInstance = new EntryCollection();
+            }
+
+            return this._visibleInstance;
+        }
     });
 
     return EntryCollection;

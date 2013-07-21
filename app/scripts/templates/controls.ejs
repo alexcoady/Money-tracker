@@ -1,0 +1,29 @@
+<div class="navbar">
+	<div class="navbar-inner">
+
+		<ul class="nav">
+
+			<% _.each(sorts, function (sortItem) {
+				%>
+				<li class="<%= sortItem === sort ? 'active' : '' %>">
+					<a href="#" class="sort-item sort-<%= sortItem %>"><%= sortItem %></a>
+				</li>
+				<%
+			}) %>
+
+		</ul>
+
+		<ul class="nav pull-right">
+
+			<% _.each(filters, function (filterItem) {
+				%>
+				<li class="<%= filterItem === filter ? 'active' : '' %>">
+					<a href="#" class="filter-item filter-<%= filterItem %>"><%= filterItem %></a>
+				</li>
+				<%
+			}) %>
+
+		</ul>
+
+	</div>
+</div>
