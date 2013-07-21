@@ -6,7 +6,8 @@ define([
     'backbone',
     'templates',
     'views/entry-view',
-], function ($, _, Backbone, JST, EntryView) {
+    'models/settings-model'
+], function ($, _, Backbone, JST, EntryView, SettingsModel) {
     'use strict';
 
     var EntryCollectionView = Backbone.View.extend({
@@ -17,11 +18,10 @@ define([
         
     	initialize: function () {
 
-            this.collection.on('add', this.renderOne, this);
-            this.collection.on('remove', this.render, this);
+            this.collection.on('add remove', this.renderFiltered, this);
     	},
 
-    	render: function () {
+    	renderAll: function () {
 
     		var that = this;
         
@@ -42,7 +42,20 @@ define([
             this.$el.append( entryView.render().el );
 
     		return this;
-    	}
+    	},
+
+        /*
+        *   Function renderFilter
+        *   ----------------------------------------------------
+        *   Render this collection with a filter applied
+        *   ----------------------------------------------------
+        *   @param null
+        *   @return this: EntryCollectionView object
+        */
+        renderFiltered: function () {
+
+            var settings = SettingsModel.getInstance();
+        }
 
     });
 

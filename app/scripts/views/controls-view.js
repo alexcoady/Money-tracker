@@ -45,31 +45,30 @@ define([
         applyFilter: function () {
 
             var filterValue = this.model.get("filter"),
-                entries = EntryCollection.getInstance(),
-                visibleEntries = EntryCollection.getVisibleInstance();
+                entries = EntryCollection.getInstance();
+                
+            // switch (filterValue) {
+            //     case 'income': {
 
-            switch (filterValue) {
-                case 'income': {
-
-                    visibleEntries.set(entries.filter(function (entry) { 
+            //         visibleEntries.set(entries.filter(function (entry) { 
                         
-                        if (entry.get("amount") >= 0) {
-                            return true;
-                        }
-                    }));
-                    break;
-                }
-                case 'outcome': {
+            //             if (entry.get("amount") >= 0) {
+            //                 return true;
+            //             }
+            //         }));
+            //         break;
+            //     }
+            //     case 'outcome': {
 
-                    visibleEntries.set(entries.filter(function (entry) { 
+            //         visibleEntries.set(entries.filter(function (entry) { 
                         
-                        if (entry.get("amount") < 0) {
-                            return true;
-                        }
-                    }));
-                    break;
-                }
-            }
+            //             if (entry.get("amount") < 0) {
+            //                 return true;
+            //             }
+            //         }));
+            //         break;
+            //     }
+            // }
         }
     });
 

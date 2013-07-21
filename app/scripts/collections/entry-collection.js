@@ -37,7 +37,6 @@ define([
     },
     {
     	_instance: undefined,
-        _visibleInstance: undefined,
 
     	getInstance: function () {
 
@@ -48,17 +47,7 @@ define([
     		}
 
     		return this._instance;
-    	},
-
-        getVisibleInstance: function () {
-
-            if (this._visibleInstance === undefined) {
-
-                this._visibleInstance = new EntryCollection();
-            }
-
-            return this._visibleInstance;
-        }
+    	}
     });
 
     return EntryCollection;

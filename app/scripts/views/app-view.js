@@ -32,27 +32,22 @@ define([
 
         render: function () {
 
-        	var entries = EntryCollection.getInstance(),
-                visibleEntries = EntryCollection.getVisibleInstance(),
-                entryCollectionView = new EntryCollectionView({ collection: visibleEntries }),
+        	var settings = SettingsModel.getInstance(),
+                controlsView = new ControlsView({ model: settings }),
+
+                entries = EntryCollection.getInstance(),
+                entryCollectionView = new EntryCollectionView({ collection: entries }),
                 
                 dashboard = DashboardModel.getInstance(),
-        		dashboardView = new DashboardView({ model: dashboard, collection: visibleEntries }),
+        		dashboardView = new DashboardView({ model: dashboard, collection: entries }),
 
-                settings = SettingsModel.getInstance(),
-                controlsView = new ControlsView({ model: settings });
-
-            visibleEntries.add(entries.slice(0, 10));
+                addEntryView = new AddEntryView();
 
             // Render entries
-            this.$entries.html( entryCollectionView.render().el );
-
-
+            this.$entries.html( entryCollectionView.renderAll().el );
 
             dashboardView.render();
             controlsView.render();
-
-            var addEntryView = new AddEntryView();
             addEntryView.render();
 
         	return this;
