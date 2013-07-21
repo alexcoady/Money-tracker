@@ -57,8 +57,8 @@ define([
                 
                 // TODO: Get the min/max working here rather than hardcoding!
                 scaleY = d3.scale.linear()
-                                    .domain([ d3.max(dataset, function (d) { console.log(d[1]); return d[1]; }), d3.min(dataset, function (d) { console.log(d[1]); return d[1]; }) ])
-                                    .domain([ d3.max(dataset, function (d) { console.log(d[1]); return d[1]; }), -780 ])
+                                    .domain([ d3.max(dataset, function (d) { return d[1]; }), d3.min(dataset, function (d) { return d[1]; }) ])
+                                    .domain([ d3.max(dataset, function (d) { return d[1]; }), -780 ])
                                     .range([padding.bottom, h - padding.top]),
 
                 svg = d3.select(this.$chart.selector)
@@ -67,9 +67,9 @@ define([
                     .attr("height", h);
 
 
-            console.log(dataset);
-            console.log([ d3.max(dataset, function (d) { return d[1]; }), d3.min(dataset, function (d) { return d[1]; }) ]);
-            console.log([padding.bottom, h - padding.top]);
+            // console.log(dataset);
+            // console.log([ d3.max(dataset, function (d) { return d[1]; }), d3.min(dataset, function (d) { return d[1]; }) ]);
+            // console.log([padding.bottom, h - padding.top]);
 
             svg.selectAll("circle")
                 .data(dataset)
@@ -77,11 +77,9 @@ define([
                 .append("circle")
                 .attr({
                     "cx": function (d) {
-                        console.log("X", scaleX(new Date(d[0])) );
                         return scaleX(new Date(d[0]));
                     },
                     "cy": function (d) {
-                        console.log("Y", scaleY(d[1]));
                         return scaleY(d[1]);
                     },
                     "r": 2

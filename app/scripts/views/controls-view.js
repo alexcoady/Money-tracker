@@ -27,8 +27,6 @@ define([
 
         render: function () {
 
-            this.applyFilter();
-
         	var template = this.template( this.model.toJSON() );
         	this.$el.html(template);
 
@@ -38,37 +36,7 @@ define([
         changeFilter: function (e) {
 
             var filter = e.target.innerHTML;
-
             this.model.set("filter", filter);
-        },
-
-        applyFilter: function () {
-
-            var filterValue = this.model.get("filter"),
-                entries = EntryCollection.getInstance();
-                
-            // switch (filterValue) {
-            //     case 'income': {
-
-            //         visibleEntries.set(entries.filter(function (entry) { 
-                        
-            //             if (entry.get("amount") >= 0) {
-            //                 return true;
-            //             }
-            //         }));
-            //         break;
-            //     }
-            //     case 'outcome': {
-
-            //         visibleEntries.set(entries.filter(function (entry) { 
-                        
-            //             if (entry.get("amount") < 0) {
-            //                 return true;
-            //             }
-            //         }));
-            //         break;
-            //     }
-            // }
         }
     });
 
